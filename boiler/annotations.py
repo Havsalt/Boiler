@@ -3,7 +3,6 @@ from typing import (
     Protocol as _Protocol
 )
 
-
 _T_contra = _TypeVar("_T_contra", contravariant=True)
 
 class SupportsRead(_Protocol[_T_contra]):

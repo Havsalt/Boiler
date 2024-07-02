@@ -1,7 +1,7 @@
 [project]
 name = "boiler"
 version = "0.1.0"
-description = "Creates project boilerplates from templates"
+description = "Creates project boilerplate from templates"
 authors = [
     { name = "Havsalt", email = "knutolaihelgesen@gmail.com" }
 ]

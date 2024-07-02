@@ -1,5 +1,5 @@
-# templar
+# Boiler
 
-Template maker for your fresh projects
+Creates project boilerplate from templates
 
 * License: MIT

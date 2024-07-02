@@ -1,8 +1,8 @@
 """
-Templar
+Boiler
 -------
 
-Template maker for your fresh projects
+Creates project boilerplate from templates
 """
 
 __version__ = "0.1.0"

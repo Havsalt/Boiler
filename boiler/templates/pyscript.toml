@@ -1,0 +1,81 @@
+
+run-after = [
+    ["rye", "sync"]
+]
+
+[create]
+
+[create."$[NAME].bat"]
+source = "command"
+command = [ "fab", "pyscript", "--name", "$[NAME]" ]
+
+[create."LICENSE.txt"]
+source = "command"
+command = [ "fab", "mit", "--year", "2024", "--owner", "Havsalt" ]
+
+[create."README.md"]
+content = '''
+# $[NAME]
+
+$[DESC]
+
+* License: MIT
+'''
+
+[create."$[NAME]"] # source folder
+
+[create."$[NAME]"."__init__.py"]
+source = "command"
+command = [ "fab", "parser", "--name", "$[NAME]", "--desc", "$[DESC]" ]
+content = '''
+"""
+$[NAME]
+-------
+
+$[DESC]
+"""
+'''
+
+[create."$[NAME]"."__main__.py"]
+content = '''
+import $[NAME]
+import sys
+
+
+sys.exit($[NAME].main())
+'''
+
+[create."pyproject.toml"]
+content = '''
+[project]
+name = "$[NAME]"
+dynamic = ["version"]
+description = "$[DESC]"
+authors = [
+    { name = "FloatingInt", email = "knutolaihelgesen@gmail.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.10"
+
+[project.scripts]
+"main" = "$[NAME]:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.version]
+path = "$[NAME]/__init__.py"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+include = ["$[NAME]/**", "$[NAME].bat"]
+exclude = ["$[NAME]/**/__pycache__"]
+'''

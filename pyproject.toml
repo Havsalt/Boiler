@@ -1,0 +1,32 @@
+[project]
+name = "boiler"
+version = "0.1.0"
+description = "Creates project boilerplates from templates"
+authors = [
+    { name = "Havsalt", email = "knutolaihelgesen@gmail.com" }
+]
+dependencies = [
+    "tomli~=2.0",
+]
+readme = "README.md"
+requires-python = ">= 3.10"
+
+[project.scripts]
+"main" = "boiler:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "rich>=13.7.1",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+include = ["boiler/**", "boil.bat"]
+exclude = ["boiler/**/__pycache__"]
